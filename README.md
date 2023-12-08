@@ -23,7 +23,7 @@ public User getUser(Long id) {
 
 - 根据prefix前缀和suffix后缀从缓存中查找并指定时间存储
 
-```
+```java
 @RedisCacheable(prefix = USER_KEY, suffix = "#id",timeout = 10,unit = TimeUnit.MINUTES)
 @Override
 public User getUser(Long id) {
