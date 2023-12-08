@@ -17,7 +17,7 @@
 @RedisCacheable(prefix = USER_KEY, suffix = "#id")
 @Override
 public User getUser(Long id) {
-	return getById(id);
+    return getById(id);
 }
 ```
 
@@ -27,7 +27,7 @@ public User getUser(Long id) {
 @RedisCacheable(prefix = USER_KEY, suffix = "#id",timeout = 10,unit = TimeUnit.MINUTES)
 @Override
 public User getUser(Long id) {
-	return getById(id);
+    return getById(id);
 }
 ```
 
@@ -39,7 +39,7 @@ public User getUser(Long id) {
 @RedisCacheEvict(prefix = USER_KEY, suffix = "#user.id")
 @Override
 public Boolean updateUser(User user) {
-	return updateById(user);
+    return updateById(user);
 }
 ```
 
