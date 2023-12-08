@@ -1,4 +1,4 @@
-package com.example.jmrediscacheable.service.domain;
+package com.example.jmrediscacheable.serve.domain;
 
 import lombok.Getter;
 import lombok.Setter;

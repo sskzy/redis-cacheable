@@ -1,7 +1,7 @@
 package com.example.jmrediscacheable;
 
-import com.example.jmrediscacheable.service.domain.User;
-import com.example.jmrediscacheable.service.service.impl.UserServiceImpl;
+import com.example.jmrediscacheable.serve.domain.User;
+import com.example.jmrediscacheable.serve.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
