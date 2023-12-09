@@ -1,7 +1,7 @@
-package com.example.jmrediscacheable.serve.service;
+package com.example.jmrediscacheable.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.jmrediscacheable.serve.domain.User;
+import com.example.jmrediscacheable.server.domain.User;
 
 public interface UserService extends IService<User> {
 

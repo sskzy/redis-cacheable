@@ -1,11 +1,11 @@
-package com.example.jmrediscacheable.serve.service.impl;
+package com.example.jmrediscacheable.server.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.jmrediscacheable.redis.annotation.RedisCacheEvict;
 import com.example.jmrediscacheable.redis.annotation.RedisCacheable;
-import com.example.jmrediscacheable.serve.domain.User;
-import com.example.jmrediscacheable.serve.mapper.UserMapper;
-import com.example.jmrediscacheable.serve.service.UserService;
+import com.example.jmrediscacheable.server.domain.User;
+import com.example.jmrediscacheable.server.mapper.UserMapper;
+import com.example.jmrediscacheable.server.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
