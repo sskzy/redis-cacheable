@@ -1,11 +1,11 @@
-package com.example.kgrediscacheable.serve.service.impl
+package com.example.kgrediscacheable.server.service.impl
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
 import com.example.jgrediscacheable.serve.service.UserService
 import com.example.kgrediscacheable.redis.annotation.RedisCacheEvict
 import com.example.kgrediscacheable.redis.annotation.RedisCacheable
-import com.example.kgrediscacheable.serve.domain.User
-import com.example.kgrediscacheable.serve.mapper.UserMapper
+import com.example.kgrediscacheable.server.domain.User
+import com.example.kgrediscacheable.server.mapper.UserMapper
 import org.springframework.stereotype.Service
 
 /**

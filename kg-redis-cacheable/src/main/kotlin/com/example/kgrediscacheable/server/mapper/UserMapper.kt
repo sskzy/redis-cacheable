@@ -1,7 +1,7 @@
-package com.example.kgrediscacheable.serve.mapper
+package com.example.kgrediscacheable.server.mapper
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper
-import com.example.kgrediscacheable.serve.domain.User
+import com.example.kgrediscacheable.server.domain.User
 import org.apache.ibatis.annotations.Mapper
 
 /**
