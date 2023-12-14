@@ -1,7 +1,7 @@
 package com.example.jgrediscacheable.serve.service
 
 import com.baomidou.mybatisplus.extension.service.IService
-import com.example.kgrediscacheable.server.domain.User
+import com.example.rediscacheable.server.domain.User
 
 /**
  * @author : songtc

@@ -1,11 +1,10 @@
-package com.example.kgrediscacheable.redis.aspect
+package com.example.rediscacheable.redis.aspect
 
-import com.example.kgrediscacheable.redis.annotation.RedisCacheEvict
-import com.example.kgrediscacheable.redis.annotation.RedisCacheable
+import com.example.rediscacheable.redis.annotation.RedisCacheEvict
+import com.example.rediscacheable.redis.annotation.RedisCacheable
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.expression.EvaluationContext
 import org.springframework.expression.ExpressionParser

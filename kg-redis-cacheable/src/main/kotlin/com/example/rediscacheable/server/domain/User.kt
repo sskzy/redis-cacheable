@@ -1,4 +1,4 @@
-package com.example.kgrediscacheable.server.domain
+package com.example.rediscacheable.server.domain
 
 /**
  * @author : songtc

@@ -1,11 +1,11 @@
-package com.example.kgrediscacheable
+package com.example.rediscacheable
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KgRedisCacheableApplication
+class RedisCacheableApplication
 
 fun main(args: Array<String>) {
-    runApplication<KgRedisCacheableApplication>(*args)
+    runApplication<RedisCacheableApplication>(*args)
 }
