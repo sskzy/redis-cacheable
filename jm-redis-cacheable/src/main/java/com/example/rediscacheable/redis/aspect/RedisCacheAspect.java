@@ -1,8 +1,8 @@
-package com.example.jmrediscacheable.redis.aspect;
+package com.example.rediscacheable.redis.aspect;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.example.jmrediscacheable.redis.annotation.RedisCacheEvict;
-import com.example.jmrediscacheable.redis.annotation.RedisCacheable;
+import com.example.rediscacheable.redis.annotation.RedisCacheEvict;
+import com.example.rediscacheable.redis.annotation.RedisCacheable;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -73,8 +73,9 @@ public final class RedisCacheAspect {
      */
     @Around("@annotation(redisCacheable)")
     public Object around(ProceedingJoinPoint joinPoint, RedisCacheable redisCacheable) throws Throwable {
-        Assert.hasLength(redisCacheable.prefix(), "the redis key prefix must not be empty");
-        Assert.hasLength(redisCacheable.suffix(), "the redis key suffix must not be empty");
+        Assert.notNull(redisTemplate,"redisTemple cannot null");
+        Assert.hasLength(redisCacheable.prefix(), "redis key prefix must not be empty");
+        Assert.hasLength(redisCacheable.suffix(), "redis key suffix must not be empty");
 
         assembling(((MethodSignature) joinPoint.getSignature()).getParameterNames(), joinPoint.getArgs());
         // data for cache
@@ -98,8 +99,9 @@ public final class RedisCacheAspect {
      */
     @Around("@annotation(redisCacheEvict)")
     public Object around(ProceedingJoinPoint joinPoint, RedisCacheEvict redisCacheEvict) throws Throwable {
-        Assert.hasLength(redisCacheEvict.prefix(), "the redis key prefix must not be empty");
-        Assert.hasLength(redisCacheEvict.suffix(), "the redis key suffix must not be empty");
+        Assert.notNull(redisTemplate,"redisTemple cannot null");
+        Assert.hasLength(redisCacheEvict.prefix(), "redis key prefix must not be empty");
+        Assert.hasLength(redisCacheEvict.suffix(), "redis key suffix must not be empty");
 
         assembling(((MethodSignature) joinPoint.getSignature()).getParameterNames(), joinPoint.getArgs());
         // remove cache
@@ -108,7 +110,7 @@ public final class RedisCacheAspect {
     }
 
     /**
-     * redis相关操作 用于后期扩展
+     * redis相关操作 多线程扩展
      */
     public class RedisOperation {
 

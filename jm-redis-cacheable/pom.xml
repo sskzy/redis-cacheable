@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>jm-redis-cacheable</artifactId>
+    <artifactId>redis-cacheable</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>jm-redis-cacheable</name>
-    <description>jm-redis-cacheable</description>
+    <name>redis-cacheable</name>
+    <description>redis-cacheable</description>
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,7 +86,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.example.jmrediscacheable.JmRedisCacheableApplication</mainClass>
+                    <mainClass>com.example.rediscacheable.JmRedisCacheableApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

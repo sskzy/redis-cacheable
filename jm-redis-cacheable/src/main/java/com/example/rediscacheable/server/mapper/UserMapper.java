@@ -1,8 +1,8 @@
-package com.example.jmrediscacheable.server.mapper;
+package com.example.rediscacheable.server.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.jmrediscacheable.server.domain.User;
+import com.example.rediscacheable.server.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

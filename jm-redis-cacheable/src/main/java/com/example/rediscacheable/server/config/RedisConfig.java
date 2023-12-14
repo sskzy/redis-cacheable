@@ -1,4 +1,4 @@
-package com.example.jmrediscacheable.redis.config;
+package com.example.rediscacheable.server.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,13 +1,13 @@
-package com.example.jmrediscacheable;
+package com.example.rediscacheable;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JmRedisCacheableApplication {
+public class RedisCacheableApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JmRedisCacheableApplication.class, args);
+        SpringApplication.run(RedisCacheableApplication.class, args);
     }
 
 }

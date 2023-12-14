@@ -1,14 +1,14 @@
-package com.example.jmrediscacheable;
+package com.example.rediscacheable;
 
-import com.example.jmrediscacheable.server.domain.User;
-import com.example.jmrediscacheable.server.service.impl.UserServiceImpl;
+import com.example.rediscacheable.server.domain.User;
+import com.example.rediscacheable.server.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
 @SpringBootTest
-class JmRedisCacheableApplicationTests {
+class RedisCacheableApplicationTests {
 
     @Resource
     UserServiceImpl userService;
