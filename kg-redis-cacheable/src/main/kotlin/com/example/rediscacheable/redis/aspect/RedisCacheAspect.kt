@@ -69,8 +69,8 @@ class RedisCacheAspect private constructor() {
     @Throws(Throwable::class)
     fun around(joinPoint: ProceedingJoinPoint, redisCacheable: RedisCacheable): Any {
         Assert.notNull(redisTemplate, "redisTemple cannot null")
-        Assert.hasLength(redisCacheEvict.prefix, "redis key prefix must not be empty")
-        Assert.hasLength(redisCacheEvict.suffix, "redis key suffix must not be empty")
+        Assert.hasLength(redisCacheable.prefix, "redis key prefix must not be empty")
+        Assert.hasLength(redisCacheable.suffix, "redis key suffix must not be empty")
         assembling((joinPoint.signature as org.aspectj.lang.reflect.MethodSignature).parameterNames, joinPoint.args)
 
         // data for cache
