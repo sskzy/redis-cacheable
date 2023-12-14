@@ -68,8 +68,9 @@ class RedisCacheAspect private constructor() {
     @Around("@annotation(redisCacheable)")
     @Throws(Throwable::class)
     fun around(joinPoint: ProceedingJoinPoint, redisCacheable: RedisCacheable): Any {
-        Assert.hasLength(redisCacheable.prefix, "the redis key prefix must not be empty")
-        Assert.hasLength(redisCacheable.suffix, "the redis key suffix must not be empty")
+        Assert.notNull(redisTemplate, "redisTemple cannot null")
+        Assert.hasLength(redisCacheEvict.prefix, "redis key prefix must not be empty")
+        Assert.hasLength(redisCacheEvict.suffix, "redis key suffix must not be empty")
         assembling((joinPoint.signature as org.aspectj.lang.reflect.MethodSignature).parameterNames, joinPoint.args)
 
         // data for cache
@@ -98,8 +99,9 @@ class RedisCacheAspect private constructor() {
     @Around("@annotation(redisCacheEvict)")
     @Throws(Throwable::class)
     fun around(joinPoint: ProceedingJoinPoint, redisCacheEvict: RedisCacheEvict): Any {
-        Assert.hasLength(redisCacheEvict.prefix, "the redis key prefix must not be empty")
-        Assert.hasLength(redisCacheEvict.suffix, "the redis key suffix must not be empty")
+        Assert.notNull(redisTemplate, "redisTemple cannot null")
+        Assert.hasLength(redisCacheEvict.prefix, "redis key prefix must not be empty")
+        Assert.hasLength(redisCacheEvict.suffix, "redis key suffix must not be empty")
         assembling((joinPoint.signature as org.aspectj.lang.reflect.MethodSignature).parameterNames, joinPoint.args)
 
         // remove cache
