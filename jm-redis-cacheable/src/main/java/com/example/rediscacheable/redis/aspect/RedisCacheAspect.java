@@ -80,9 +80,10 @@ public final class RedisCacheAspect {
     }
 
     /**
+     * 异常统一判断
      *
-     * @param prefix
-     * @param suffix
+     * @param prefix 前缀
+     * @param suffix 后缀
      */
     private void exceptionInspection(String prefix, String suffix) {
         Assert.notNull(redisTemplate, "redisTemple cannot null");
