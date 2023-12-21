@@ -3,6 +3,7 @@ package com.example.rediscacheable.redis.aspect;
 import com.alibaba.fastjson2.JSONObject;
 import com.example.rediscacheable.redis.annotation.RedisCacheEvict;
 import com.example.rediscacheable.redis.annotation.RedisCacheable;
+import com.example.rediscacheable.redis.exception.SpELParameterMissException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -34,25 +35,35 @@ public final class RedisCacheAspect {
     private RedisCacheAspect() {
     }
 
-    /** 方法对象参数名称和参数数据的存储容器 */
+    /**
+     * 方法对象参数名称和参数数据的存储容器
+     */
     private EvaluationContext context;
 
-    /** springframework 默认的 SpEL 解析器 */
+    /**
+     * springframework 默认的 SpEL 解析器
+     */
     private final ExpressionParser parser = new SpelExpressionParser();
 
-    /** 自定义 redisTemplate 模板注入 */
+    /**
+     * 自定义 redisTemplate 模板注入
+     */
     @Resource
     private RedisTemplate<String, String> redisTemplate;
 
     /**
      * 获取拼接转后缓存 key
      *
-     * @param prefix     前缀
-     * @param SpELSuffix SpEL后缀
+     * @param prefix 前缀
+     * @param suffix SpEL后缀
      * @return 获取拼接转后缓存 key
      */
-    public String convertKey(String prefix, String SpELSuffix) {
-        return prefix + ":" + parser.parseExpression(SpELSuffix).getValue(context, String.class);
+    public String convertKey(String prefix, String suffix) {
+        String value = parser.parseExpression(suffix).getValue(context, String.class);
+        if (ObjectUtils.isEmpty(value) || value.contains("null")) {
+            throw new SpELParameterMissException("SpEL表达式:[" + suffix + "]与参数不匹配");
+        }
+        return prefix + ":" + value;
     }
 
     /**
@@ -69,13 +80,22 @@ public final class RedisCacheAspect {
     }
 
     /**
+     *
+     * @param prefix
+     * @param suffix
+     */
+    private void exceptionInspection(String prefix, String suffix) {
+        Assert.notNull(redisTemplate, "redisTemple cannot null");
+        Assert.hasLength(prefix, "redis key prefix must not be empty");
+        Assert.hasLength(suffix, "redis key suffix must not be empty");
+    }
+
+    /**
      * Annotation get cache aspect
      */
     @Around("@annotation(redisCacheable)")
     public Object around(ProceedingJoinPoint joinPoint, RedisCacheable redisCacheable) throws Throwable {
-        Assert.notNull(redisTemplate,"redisTemple cannot null");
-        Assert.hasLength(redisCacheable.prefix(), "redis key prefix must not be empty");
-        Assert.hasLength(redisCacheable.suffix(), "redis key suffix must not be empty");
+        exceptionInspection(redisCacheable.prefix(), redisCacheable.suffix());
 
         assembling(((MethodSignature) joinPoint.getSignature()).getParameterNames(), joinPoint.getArgs());
         // data for cache
@@ -99,9 +119,7 @@ public final class RedisCacheAspect {
      */
     @Around("@annotation(redisCacheEvict)")
     public Object around(ProceedingJoinPoint joinPoint, RedisCacheEvict redisCacheEvict) throws Throwable {
-        Assert.notNull(redisTemplate,"redisTemple cannot null");
-        Assert.hasLength(redisCacheEvict.prefix(), "redis key prefix must not be empty");
-        Assert.hasLength(redisCacheEvict.suffix(), "redis key suffix must not be empty");
+        exceptionInspection(redisCacheEvict.prefix(), redisCacheEvict.suffix());
 
         assembling(((MethodSignature) joinPoint.getSignature()).getParameterNames(), joinPoint.getArgs());
         // remove cache
